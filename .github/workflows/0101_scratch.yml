@@ -1,0 +1,14 @@
+#go build -o app.bin cmd/main.go
+name: My-GitHubAction-Basics
+on: 
+  push:
+    branches:
+      -master
+jobs:
+  build:
+    runs-on: scratch
+    steps:
+      - name: Print Hello Message
+        run: echo "Hello world from testing job"
+    
+    
