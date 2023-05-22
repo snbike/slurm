@@ -12,8 +12,11 @@ RUN go build -o /go/bin/app.bin cmd/main.go
 FROM scratch
 WORKDIR /
 COPY --from=build /go/src/app .
-RUN adduser -D simpleuser
+RUN adduser -D simpleuser \
+    && mkdir /home/simpleuser \
+    && chown simpleuser:simpleuser /home/simpleuser
 RUN chown simpleuser:simpleuser /app
 USER simpleuser
+
 ENTRYPOINT ["/app"]
 VOLUME ["/upload"]
