@@ -6,9 +6,9 @@ on:
       - main
 
 env:
-  IMAGE_NAME: myapp
+  IMAGE_NAME: 0101_scratch
   REGISTRY: ghcr.io
-  USERNAME: ${{ github.repository_owner }}
+  USERNAME: nulshh
   TAG: latest
 
 jobs:
@@ -35,5 +35,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          #tags: ${{ env.REGISTRY }}/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+          tags: ${{ env.REGISTRY }}/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
 
