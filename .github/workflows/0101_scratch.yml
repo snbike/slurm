@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.MY_TOKEN }}
 
       - name: Clear Docker cache
-        run: docker builder prune -all
+        run: docker builder prune --all
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
