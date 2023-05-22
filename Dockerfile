@@ -10,15 +10,10 @@ RUN go build -o /go/bin/app.bin cmd/main.go
 
 # Final stage
 FROM scratch
+RUN echo 'simpleuser:x:1000:1000::/:' > /etc/passwd && \
+    echo 'simpleuser:x:1000:' > /etc/group
 WORKDIR /
 COPY --from=build /go/src/app .
 ENTRYPOINT ["/app"]
-
-RUN printf "simpleuser:x:1000:1000:,,,:/home/simpleuser:/bin/sh\n" > /etc/passwd && \
-    printf "simpleuser:x:1000:\n" > /etc/group && \
-    mkdir /home/simpleuser && \
-    chown -R 1000:1000 /home/simpleuser
-WORKDIR /home/simpleuser
 USER simpleuser
-
 VOLUME ["/upload"]
