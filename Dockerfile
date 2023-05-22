@@ -17,7 +17,7 @@ RUN echo 'simpleuser:x:1000:1000::/:' > /etc/passwd
 RUN echo 'simpleuser:x:1000:' > /etc/group
 RUN chown -R simpleuser:simpleuser /go/src/app
 USER simpleuser
-COPY app /go/src/app
+#COPY app /go/src/app
 
 ENTRYPOINT ["/app"]
 VOLUME ["/upload"]
