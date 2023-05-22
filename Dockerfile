@@ -9,6 +9,6 @@ RUN go build -o /go/bin/app.bin cmd/main.go
 
 
 # Final stage
-#FROM scratch
-#COPY --from=build /app/myapp /
-#ENTRYPOINT ["/myapp"]
+FROM scratch
+COPY --from=build /app/myapp /
+ENTRYPOINT ["/myapp"]
