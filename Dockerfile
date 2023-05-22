@@ -7,17 +7,24 @@ COPY . .
 RUN go mod download
 RUN go build -o /go/bin/app.bin cmd/main.go
 
+# Базовый образ Alpine для создания non-root пользователя
+FROM alpine:latest AS intermediate
+RUN addgroup -S simplegroup && \
+    adduser -S -G simplegroup simpleuser
+
 
 # Final stage
 FROM scratch
 WORKDIR /
 COPY --from=build /go/src/app .
 
-RUN printf "user:x:1000:1000:,,,:/home/user:/bin/sh\n" > /etc/passwd && \
-    printf "user:x:1000:\n" > /etc/group && \
-    mkdir /home/user && \
-    chown -R 1000:1000 /home/user
-USER user
+COPY --from=intermediate /etc/passwd /etc/passwd
+COPY --from=intermediate /etc/group /etc/group
+RUN mkdir /home/simpleuser && \
+    chown -R simpleuser:simplegroup /home/simpleuser
 
 ENTRYPOINT ["/app"]
+
+USER simpleuser
+
 VOLUME ["/upload"]
