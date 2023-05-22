@@ -10,7 +10,7 @@ env:
   REGISTRY: ghcr.io
   USERNAME: nulshh
   TAG: latest
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
