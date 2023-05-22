@@ -15,9 +15,9 @@ COPY --from=build /go/src/app .
 
 RUN echo 'simpleuser:x:1000:1000::/:' > /etc/passwd
 RUN echo 'simpleuser:x:1000:' > /etc/group
-RUN mkdir /app && chown -R simpleuser:simpleuser /app
+RUN chown -R simpleuser:simpleuser /go/src/app
 USER simpleuser
-COPY /app /go/src/app
+COPY app /go/src/app
 
 ENTRYPOINT ["/app"]
 VOLUME ["/upload"]
