@@ -13,8 +13,11 @@ FROM scratch
 WORKDIR /
 COPY --from=build /go/src/app .
 
-RUN addgroup -S nonrootgroup && adduser -S -G nonrootgroup nonrootuser
-USER nonrootuser
+RUN printf "user:x:1000:1000:,,,:/home/user:/bin/sh\n" > /etc/passwd && \
+    printf "user:x:1000:\n" > /etc/group && \
+    mkdir /home/user && \
+    chown -R 1000:1000 /home/user
+USER user
 
 ENTRYPOINT ["/app"]
 VOLUME ["/upload"]
