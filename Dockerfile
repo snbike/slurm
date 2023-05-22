@@ -12,12 +12,13 @@ RUN go build -o /go/bin/app.bin cmd/main.go
 FROM scratch
 WORKDIR /
 COPY --from=build /go/src/app .
-
-RUN echo 'simpleuser:x:1000:1000::/:' > /etc/passwd
-RUN echo 'simpleuser:x:1000:' > /etc/group
-RUN chown -R simpleuser:simpleuser /go/src/app
-USER simpleuser
-#COPY app /go/src/app
-
 ENTRYPOINT ["/app"]
+
+RUN printf "simpleuser:x:1000:1000:,,,:/home/simpleuser:/bin/sh\n" > /etc/passwd && \
+    printf "simpleuser:x:1000:\n" > /etc/group && \
+    mkdir /home/simpleuser && \
+    chown -R 1000:1000 /home/simpleuser
+WORKDIR /home/simpleuser
+USER simpleuser
+
 VOLUME ["/upload"]
