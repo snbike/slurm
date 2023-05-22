@@ -12,5 +12,9 @@ RUN go build -o /go/bin/app.bin cmd/main.go
 FROM scratch
 WORKDIR /
 COPY --from=build /go/src/app .
+
+RUN addgroup -S nonrootgroup && adduser -S -G nonrootgroup nonrootuser
+USER nonrootuser
+
 ENTRYPOINT ["/app"]
 VOLUME ["/upload"]
