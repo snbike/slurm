@@ -1,7 +1,7 @@
 # Start by building the application.
 
 # Базовый образ Alpine для создания non-root пользователя
-FROM alpine:latest AS intermediate
+FROM alpine:3.18.0 AS intermediate
 
 # Создаем non-root пользователя и группу
 RUN addgroup -S simplegroup && \
