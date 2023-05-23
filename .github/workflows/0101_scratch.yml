@@ -9,7 +9,7 @@ env:
   IMAGE_NAME: 0101_scratch
   REGISTRY: ghcr.io
   USERNAME: nulshh
-  TAG: latest
+  TAG: ${{ env.VERSION_TAG }}
   
 jobs:
   build:
