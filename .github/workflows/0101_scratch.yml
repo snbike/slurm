@@ -32,14 +32,17 @@ jobs:
       - name: Clear Docker cache
         run: docker builder prune --all
 
-      - name: Telegram Notifier
+
+      - name: Telegram sender
   # You may pin to the exact commit or the version.
-  # uses: nikhilbadyal/telegram-forwarder@3b6d277f571083b6f0a74b1cafdbc964151c8501
-        uses: nikhilbadyal/telegram-forwarder@0.0.1
+  # uses: robotomize/notify-telegram@f2821d117115d48ccbbde7609d2029603ee55b7e
+        uses: robotomize/notify-telegram@v0.2.4
         with:
-    # Telegram Bot Token
+    # Chat to send: chat id or @channel_name
+          chat: -1001948676627
+    # Telegram Bot token
           token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
-    # Message to be sent
-          message:  optional, default is Action Finished
-    # Receiver of the message
-          recipient: -1001948676627
+    # Job status
+          status: done optional
+    # Custom message
+          message: message optional
