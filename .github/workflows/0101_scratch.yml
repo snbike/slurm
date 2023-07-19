@@ -45,4 +45,4 @@ jobs:
     # Job status
           status: Deployed by ${{ secrets.MY_USERNAME }}
     # Custom message
-          message: Image name is IMAGE_NAME 
+          message: Image name is simple text 
