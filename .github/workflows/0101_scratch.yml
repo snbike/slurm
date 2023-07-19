@@ -43,6 +43,6 @@ jobs:
     # Telegram Bot token
           token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
     # Job status
-          status: Deployed by $env.USERNAME
+          status: Deployed by ${{ secrets.MY_USERNAME }}
     # Custom message
-          message: Image name is $env.IMAGE_NAME $env.TAG 
+          message: Image name is IMAGE_NAME 
