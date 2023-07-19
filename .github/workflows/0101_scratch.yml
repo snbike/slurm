@@ -32,25 +32,3 @@ jobs:
       - name: Clear Docker cache
         run: docker builder prune --all
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ env.REGISTRY }}/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
-          - name: Send Telegram Message Ok
-        uses: appleboy/telegram-action@master
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        with:
-          to: ${{ secrets.TELEGRAM_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          format: markdown
-          message: |
-            *1st line of your message with bold*
-            *2nd line of your message with bold, too*
-            Application: *Write something to be put inside your message*. The below lines still are part of your message.          
-            Branch: *${{ github.ref }}*
-            Repository: *${{ github.repository }}*
-            Owner: *${{ github.repository_owner }}*
