@@ -45,4 +45,4 @@ jobs:
     # Job status
           status: Deployed by ${{ env.USERNAME }}
     # Custom message
-          message: Image name is ${{ env.IMAGE_NAME }} ${{ TAG }} 
+          message: Image name is ${{ env.IMAGE_NAME }} ${{ env.TAG }} 
