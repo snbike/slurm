@@ -45,7 +45,7 @@ jobs:
     # Telegram Bot token
           token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
     # Job status
-          status: Deployed by ${{ secrets.MY_USERNAME }} 
+          status: Deployed by Actor: ${{ github.actor }} workspace ${{ github.workspace }}
     # Custom message
-          message: "Image name is simple text! Repository: ${{ github.repository }}, Actor: ${{ github.actor }}, Event: ${{ github.event_name }}"
+          message: "Wow! We have updates: in repository ${{ github.repository }} with commit ${{ github.sha }} Event: ${{ github.event_name }} github action ${{ github.action }}
 
