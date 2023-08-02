@@ -45,5 +45,5 @@ jobs:
     # Job status
           status: Deployed by ${{ secrets.MY_USERNAME }} 
     # Custom message
-          message: Image name is simple text! ${{ env.GITHUB_REPOSITORY }} ${{ env.GITHUB_ACTOR }} ${{ env.GITHUB_EVENT_NAME }}
+          message: Image name is simple text! Repository: ${{ env.GITHUB_REPOSITORY }}, Actor: ${{ env.GITHUB_ACTOR }}, Event: ${{ env.GITHUB_EVENT_NAME }}
 
