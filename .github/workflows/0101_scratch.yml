@@ -32,9 +32,9 @@ jobs:
       - name: Clear Docker cache
         run: docker builder prune --all
 
-      - name: Set environment variables
-        id: env_vars
-        run: echo "::set-output name=repo::${{ env.GITHUB_REPOSITORY }}, actor::${{ env.GITHUB_ACTOR }}, event::${{ env.GITHUB_EVENT_NAME }}"
+#    - name: Set environment variables
+#      id: env_vars
+#      run: echo "::set-output name=repo::${{ env.GITHUB_REPOSITORY }}, actor::${{ env.GITHUB_ACTOR }}, event::${{ env.GITHUB_EVENT_NAME }}"
       - name: Telegram sender
   # You may pin to the exact commit or the version.
   # uses: robotomize/notify-telegram@f2821d117115d48ccbbde7609d2029603ee55b7e
@@ -47,5 +47,5 @@ jobs:
     # Job status
           status: Deployed by ${{ secrets.MY_USERNAME }} 
     # Custom message
-          message: "Image name is simple text! Repository: ${{ steps.env_vars.outputs.repo }}, Actor: ${{ steps.env_vars.outputs.actor }}, Event: ${{ steps.env_vars.outputs.event }}"
+          message: "Image name is simple text! Repository: ${{ github.repository }}, Actor: ${{ github.actor }}, Event: ${{ github.event_name }}"
 
