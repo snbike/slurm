@@ -43,6 +43,6 @@ jobs:
     # Telegram Bot token
           token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
     # Job status
-          status: Deployed by ${{ secrets.MY_USERNAME }} ${{ env.GITHUB_REPOSITORY }} ${{ env.GITHUB_ACTOR }} ${{ env.GITHUB_EVENT_NAME }} 
+          status: Deployed by ${{ secrets.MY_USERNAME }}  
     # Custom message
-          message: Image name is simple text! 
+          message: Image name is simple text! ${{ env.GITHUB_REPOSITORY }} ${{ env.GITHUB_ACTOR }} ${{ env.GITHUB_EVENT_NAME }}
