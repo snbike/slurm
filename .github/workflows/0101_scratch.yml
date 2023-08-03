@@ -40,9 +40,11 @@ jobs:
         uses: robotomize/notify-telegram@v0.2.4
         with:
     # Chat to send: chat id or @channel_name
-          chat: -1001948676627
+          #chat: -1001948676627
+          chat: ${{ secrets.TLG_CHAT_ID }}
     # Telegram Bot token
-          token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
+          #token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
+          token: ${{ secrets.TLG_TOKEN }}
     # Job status
           status: Deployed by Actor ${{ github.actor }}
     # Custom message
