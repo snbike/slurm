@@ -16,6 +16,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: NotifyOnSuccess
+        if: success()
+        uses: robotomize/notify-telegram@v0.2.4
+        with:
+          chat: -1001948676627
+          token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
+          status: "Deployed by ${{ github.actor }}"
+          message: "Deployment to Production was successful!"
+    
+      - name: NotifyOnFailure
+        if: failure()
+        uses: robotomize/notify-telegram@v0.2.4
+        with:
+          chat: -1001948676627
+          token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
+          status: "Deployed by ${{ github.actor }}"
+          message: "Deployment to Production failed!"
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -25,7 +43,7 @@ jobs:
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ${{ env.RREGISTRY }}
           username: ${{ secrets.MY_USERNAME }}
           password: ${{ secrets.MY_TOKEN }}
 
@@ -47,20 +65,3 @@ jobs:
 #    # Custom message
 #          message: "Wow! We have updates: in repository ${{ github.repository }} with branch ${{ github.ref }} Event: ${{ github.event_name }}"
 #
-      - name: NotifyOnSuccess
-        if: success()
-        uses: robotomize/notify-telegram@v0.2.4
-        with:
-          chat: -1001948676627
-          token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
-          status: "Deployed by ${{ github.actor }}"
-          message: "Deployment to Production was successful!"
-      
-      - name: NotifyOnFailure
-        if: failure()
-        uses: robotomize/notify-telegram@v0.2.4
-        with:
-          chat: -1001948676627
-          token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
-          status: "Deployed by ${{ github.actor }}"
-          message: "Deployment to Production failed!"
