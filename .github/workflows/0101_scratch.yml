@@ -47,5 +47,5 @@ jobs:
     # Job status
           status: Deployed by Actor ${{ github.actor }}
     # Custom message
-          message: "Wow! We have updates: in repository ${{ github.repository }} with commit ${{ github.sha }} Event: ${{ github.event_name }}"
+          message: "Wow! We have updates: in repository ${{ github.repository }} with branch ${{ github.ref }} Event: ${{ github.event_name }}"
 
