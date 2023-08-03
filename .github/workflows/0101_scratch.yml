@@ -28,13 +28,14 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.MY_USERNAME }}
           password: ${{ secrets.MY_TOKEN }}
+        continue-on-error: true
 
       - name: Clear Docker cache
         run: docker builder prune --all
-
+        continue-on-error: true
 
       - name: NotifyOnSuccess
-        if: success()
+        if: steps.deploy_step.outputs.DEPLOY_STATUS != 'failure'
         uses: robotomize/notify-telegram@v0.2.4
         with:
           chat: -1001948676627
@@ -43,9 +44,9 @@ jobs:
           message: "Deployment to Production was successful!"
     
       - name: NotifyOnFailure
-        if: failure()
+        if: steps.deploy_step.outputs.DEPLOY_STATUS == 'failure'
         run: |
-          cat deployment_error.txt | xargs -I {} sh -c 'echo "Error message: {}"' >> deployment_error_message.txt
+          echo "Error message: Deployment failed. Check the logs for more details." >> deployment_error_message.txt
         uses: robotomize/notify-telegram@v0.2.4
         with:
           chat: -1001948676627
