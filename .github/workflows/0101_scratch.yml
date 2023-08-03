@@ -44,12 +44,14 @@ jobs:
     
       - name: NotifyOnFailure
         if: failure()
+        run: |
+          cat deployment_error.txt | xargs -I {} sh -c 'echo "Error message: {}"' >> deployment_error_message.txt
         uses: robotomize/notify-telegram@v0.2.4
         with:
           chat: -1001948676627
           token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
           status: "Deployed by ${{ github.actor }}"
-          message: "Deployment to Production failed!"
+          message: "Deployment to Production failed! Error message: $(cat deployment_error_message.txt)"
 
 #      - name: Telegram sender
 #  # You may pin to the exact commit or the version.
