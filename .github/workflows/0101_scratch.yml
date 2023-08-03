@@ -46,31 +46,20 @@ jobs:
 #    # Custom message
 #          message: "Wow! We have updates: in repository ${{ github.repository }} with branch ${{ github.ref }} Event: ${{ github.event_name }}"
 #
-#
-  notify_success:
-    runs-on: ubuntu-latest
-    needs: deploy
-    if: ${{ needs.deploy.result == 'success' }}
-    steps:
-      - name: Notify Success
+        - name: NotifyOnSuccess
+        if: success()
         uses: robotomize/notify-telegram@v0.2.4
         with:
-          chat: -1001948676627
-    # Telegram Bot token
+            chat: -1001948676627
           token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
           status: "Deployed by ${{ secrets.MY_USERNAME }}"
           message: "Deployment to Production was successful!"
-
-  notify_failure:
-    runs-on: ubuntu-latest
-    needs: deploy
-    if: ${{ needs.deploy.result != 'success' }}
-    steps:
-      - name: Notify Failure
+        
+        - name: NotifyOnFailure
+        if: failure()
         uses: robotomize/notify-telegram@v0.2.4
         with:
-          chat: -1001948676627
-    # Telegram Bot token
+            chat: -1001948676627
           token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
           status: "Deployed by ${{ secrets.MY_USERNAME }}"
           message: "Deployment to Production failed!"
