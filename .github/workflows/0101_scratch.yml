@@ -35,18 +35,11 @@ jobs:
         continue-on-error: true
 
       - name: Telegram sender
-  # You may pin to the exact commit or the version.
-  # uses: robotomize/notify-telegram@f2821d117115d48ccbbde7609d2029603ee55b7e
         uses: robotomize/notify-telegram@v0.2.4
         with:
-    # Chat to send: chat id or @channel_name
-          #chat: -1001948676627
           chat: ${{ secrets.TLG_CHAT_ID }}
-    # Telegram Bot token
-          #token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
           token: ${{ secrets.TLG_TOKEN }}
-    # Job status
           status: Deployed by Actor ${{ github.actor }}
-    # Custom message
           message: "Wow! We have updates: in repository ${{ github.repository }} with branch ${{ github.ref }} Event: ${{ github.event_name }}"
-
+#chat: -1001948676627
+#token: 6081641656:AAE2PUsNkNvpVvlwsxymfBfKSKF42VXD2hU
