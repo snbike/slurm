@@ -13,6 +13,14 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
+    - name: Setup OpenVPN
+      run: |
+        echo "${{ secrets.OVPN_CONFIG }}" > client.ovpn
+        sudo apt-get update
+        sudo apt-get install -y openvpn
+        sudo openvpn --config client.ovpn --daemon
+        sleep 30  # Wait for the VPN connection to establish
+    
     - name: Deploy to Server
       uses: appleboy/ssh-action@master
       with:
