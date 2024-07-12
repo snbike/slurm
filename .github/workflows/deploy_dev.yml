@@ -22,5 +22,5 @@ key: ${{ secrets.SSH_KEY }}
 script: |
 cd /path/to/your/project/
 sudo /home/snake/scripts/dev_grant_github.sh
-git pull git@github.com:your_github_nickname/your_project.git dev
+git pull git@github.com:snbike/slurm.git dev
 sudo /home/snake/scripts/dev_grant_admin.sh
