@@ -1,26 +1,26 @@
 name: Deploy to Test Server
 
 on:
-push:
-branches:
-- main
+  push:
+    branches:
+      - main
 
 jobs:
-deploy:
-runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
 
-steps:
-- name: Checkout Code
-uses: actions/checkout@v2
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
 
-- name: Deploy to Server
-uses: appleboy/ssh-action@master
-with:
-host: ${{ secrets.SERVER_IP }}
-username: github
-key: ${{ secrets.SSH_KEY }}
-script: |
-cd /path/to/your/project/
-sudo /home/snake/scripts/dev_grant_github.sh
-git pull git@github.com:snbike/slurm.git main
-sudo /home/snake/scripts/dev_grant_admin.sh
+    - name: Deploy to Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: github
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /path/to/your/project/
+          sudo /home/snake/scripts/dev_grant_github.sh
+          git pull git@github.com:snbike/slurm.git main
+          sudo /home/snake/scripts/dev_grant_admin.sh
