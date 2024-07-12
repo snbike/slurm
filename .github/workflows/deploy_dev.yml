@@ -30,5 +30,5 @@ jobs:
         script: |
           cd /home/snake/testgithub/
           sudo /home/snake/scripts/dev_grant_github.sh
-          git pull git@github.com:snbike/slurm.git main
+          git clone git@github.com:snbike/slurm.git main
           sudo /home/snake/scripts/dev_grant_admin.sh
