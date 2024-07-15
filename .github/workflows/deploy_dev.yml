@@ -28,7 +28,7 @@ jobs:
         username: github
         key: ${{ secrets.SSH_KEY }}
         script: |
+          sudo /home/github/scripts/dev_grant_github.sh
           cd /home/snake/testgithub/
-          sudo /home/snake/scripts/dev_grant_github.sh
           git clone git@github.com:snbike/slurm.git main
-          sudo /home/snake/scripts/dev_grant_admin.sh
+          sudo /home/github/scripts/dev_grant_admin.sh
